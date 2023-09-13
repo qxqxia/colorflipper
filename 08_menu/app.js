@@ -74,10 +74,37 @@ const menu = [
 ];
 
 const sectionCenter = document.querySelector('.section-center');
+const filterBtns = document.querySelectorAll('.filter-btn');
 
 window.addEventListener('DOMContentLoaded', function(){
     //console.log("shake and bake");
-    let displayMenu = menu.map(function(item){
+    displayMenuItems(menu);
+});
+
+filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(e){
+        const category = e.currentTarget.dataset.id;
+        const menuCategory = menu.filter(function(menuItem){
+            // console.log(menuItem.category);
+            if (menuItem.category === category){
+                return menuItem;
+            }
+        });
+        // console.log(menuCategory);
+        if (category === 'all'){
+            displayMenuItems(menu);
+        }
+        else {
+            displayMenuItems(menuCategory);
+        }
+    });
+});
+
+
+
+
+function displayMenuItems(menuItems){
+    let displayMenu = menuItems.map(function(item){
         // console.log(item);
         return `<article class="menu-item">
         <img src=${item.img} alt=${item.title} class="photo" />
@@ -95,4 +122,4 @@ window.addEventListener('DOMContentLoaded', function(){
     displayMenu = displayMenu.join("")
     // console.log(displayMenu);
     sectionCenter.innerHTML = displayMenu;
-});
+}
