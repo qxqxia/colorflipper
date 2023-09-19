@@ -15,6 +15,13 @@ navToggle.addEventListener('click', function(){
     }
     else{
         linksContainer.style.height = 0;
-    }
-    
+    }   
 });
+
+const navbar = document.getElementById('nav');
+const topLink = document.querySelector(".top-link");
+
+window.addEventListener('scroll', function(){
+    const scrollHeight = window.pageYOffset;
+    console.log(window.pageYOffset);
+})
